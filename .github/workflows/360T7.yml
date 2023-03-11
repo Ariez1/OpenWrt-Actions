@@ -22,8 +22,8 @@ env:
   CONFIG_FILE: 360T7/.config
   DIY_P1_SH: 360T7/diy1.sh
   DIY_P2_SH: 360T7/diy2.sh
-  UPLOAD_FIRMWARE: false
-  UPLOAD_RELEASE: true
+  UPLOAD_FIRMWARE: true
+  UPLOAD_RELEASE: false
   PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
   TZ: Asia/Shanghai
 
@@ -99,14 +99,14 @@ jobs:
       run: |
         # 整理固件包时候,删除您不想要的固件或者文件,让它不需要上传到Actions空间
         cd openwrt/bin/targets/*/*
-        rm -rf packages
-        rm -rf version.buildinfo
-        rm -rf profiles.json
-        rm -rf *rootfs*
-        rm -rf *kernel*
-        rm -rf *.manifest
-        rm -rf feeds.buildinfo
-        rm -rf sha256sums
+        #rm -rf packages
+        #rm -rf version.buildinfo
+        #rm -rf profiles.json
+        #rm -rf *rootfs*
+        #rm -rf *kernel*
+        #rm -rf *.manifest
+        #rm -rf feeds.buildinfo
+        #rm -rf sha256sums
         mv *sysupgrade.bin 360T7-${{ env.FIRMWARE_VERSION }}-sysupgrade.bin || echo 没有找到 *sysupgrade.bin 文件
         mv *factory.bin 360T7-${{ env.FIRMWARE_VERSION }}-factory.bin || echo 没有找到 *factory.bin 文件
         echo -e "$(sha256sum *)\n" > sha256sums
